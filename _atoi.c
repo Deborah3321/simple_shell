@@ -8,7 +8,7 @@
  */
 int interactive(info_t *info)
 {
-        return (isatty(STDIN_FILENO) && info->readfd <= 2);
+	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
@@ -19,10 +19,10 @@ int interactive(info_t *info)
  */
 int dee_delim(char h, char *delim)
 {
-        while (*delim)
-                if (*delim++ == h)
-                        return (1);
-        return (0);
+	while (*delim)
+		if (*delim++ == h)
+			return (1);
+	return (0);
 }
 
 /**
@@ -33,10 +33,10 @@ int dee_delim(char h, char *delim)
 
 int _letter(int c)
 {
-        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-                return (1);
-        else
-                return (0);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }
 
 /**
@@ -47,28 +47,26 @@ int _letter(int c)
 
 int _atoi(char *c)
 {
-        int n, sign = 1, flag = 0, outcome;
-        unsigned int result = 0;
+	int n, sign = 1, flag = 0, outcome;
+	unsigned int result = 0;
 
-        for (n = 0;  c[n] != '\0' && flag != 2; n++)
-        {
-                if (c[n] == '-')
-                        sign *= -1;
+	for (n = 0;  c[n] != '\0' && flag != 2; n++)
+	{
+		if (c[n] == '-')
+			sign *= -1;
+		if (c[n] >= '0' && c[n] <= '9')
+		{
+			flag = 1;
+			result *= 10;
+			result += (c[n] - '0');
+		}
+		else if (flag == 1)
+			flag = 2;
+	}
 
-                if (c[n] >= '0' && c[n] <= '9')
-                {
-                        flag = 1;
-                        result *= 10;
-                        result += (c[n] - '0');
-                }
-                else if (flag == 1)
-                        flag = 2;
-        }
-
-        if (sign == -1)
-                outcome = -result;
-        else
-                outcome = result;
-
-        return (outcome);
+	if (sign == -1)
+		outcome = -result;
+	else
+		outcome = result;
+	return (outcome);
 }
