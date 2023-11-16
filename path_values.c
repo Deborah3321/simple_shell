@@ -8,20 +8,20 @@
 int _values_path(char **arg, char **env)
 {
 	char *token = NULL, *path_rela = NULL, *path_absol = NULL;
-	size_t value_path, len;
-	struct stat stat_lineptr;
+	size_t value_path, count;
+	struct stat stat_print;
 
-	if (stat(*arg, &stat_lineptr) == 0)
+	if (stat(*arg, &stat_print) == 0)
 		return (-1);
 	path_rela = _get_path(env);/** gets the content of "PATH="*/
 	if (!path_rela)
 		return (-1);
 	token = strtok(path_rela, ":"); /**tokenizes the content of "PATH="*/
-	len = _strlen(*arg); /**gets length of arg*/
+	count = _strlen(*arg); /**gets length of arg*/
 	while (token)
 	{
 		value_path = _strlen(token);
-		path_absol = malloc(sizeof(char) * (value_path + len + 2));
+		path_absol = malloc(sizeof(char) * (value_path + count + 2));
 		if (!path_absol)
 		{
 			free(path_rela);
@@ -31,7 +31,7 @@ int _values_path(char **arg, char **env)
 		_strcat(path_absol, "/");
 		_strcat(path_absol, *arg);
 
-		if (stat(path_absol, &stat_lineptr) == 0)
+		if (stat(path_absol, &stat_print) == 0)
 		{
 			*arg = path_absol;
 			free(path_rela);

@@ -1,22 +1,22 @@
 #include "shell.h"
-int lsh_cd(char **args);
-int lsh_help(char **args);
-int lsh_exit(char **args);
-int lsh_ctrld(char **args);
+int hsh_cd(char **args);
+int hsh_help(char **args);
+int hsh_exit(char **args);
+int hsh_ctrld(char **args);
 
 /*
  * List of builtin commands, followed by their corresponding functions.
  */
 char *builtin_str[] = {"cd", "help", "exit", "^D"};
 
-int (*builtin_func[]) (char **) = {&lsh_cd, &lsh_help, &lsh_exit, &lsh_ctrld};
+int (*builtin_func[]) (char **) = {&hsh_cd, &hsh_help, &hsh_exit, &hsh_ctrld};
 
 /**
- * lsh_num_builtins - size
+ * hsh_num - size
  * Return: size
  */
 
-int lsh_num_builtins(void)
+int hsh_num(void)
 {
 	return (sizeof(builtin_str) / sizeof(char *));
 }
@@ -26,11 +26,11 @@ int lsh_num_builtins(void)
 */
 
 /**
- * lsh_cd - builtin to change dirs
+ * hsh_cd - builtin to change dirs
  * @args: List of args.  args[0] is "cd".  args[1] is the directory.
  * Return: 1 on success
  */
-int lsh_cd(char **args)
+int hsh_cd(char **args)
 {
 	if (args[1] == NULL)
 	{
@@ -47,31 +47,31 @@ int lsh_cd(char **args)
 }
 
 /**
- * lsh_help - prints the help for the shell
+ * hsh_help - prints the help for the shell
  * @args: List of args.  Not examined.
  * Return: Always returns 1, to continue executing.
  */
-int lsh_help(char **args)
+int hsh_help(char **args)
 {
-	int i;
+	int w;
 
 	printf("Oscar Bedat and Andres Henderson\n");
 	printf("If you need help, call 1-800-help\n");
 	(void)args;
-	for (i = 0; i < lsh_num_builtins(); i++)
+	for (w = 0; w < hsh_num(); w++)
 	{
-		printf("  %s\n", builtin_str[i]);
+		printf("  %s\n", builtin_str[w]);
 	}
 
 	return (1);
 }
 
 /**
- * lsh_exit - builtin to exit the shell
+ * hsh_exit - builtin to exit the shell
  * @args: List of args.  Not examined.
  * Return: Always returns 0, to terminate execution.
  */
-int lsh_exit(char **args)
+int hsh_exit(char **args)
 {
 	(void)args;
 	free(args);
@@ -79,11 +79,11 @@ int lsh_exit(char **args)
 }
 
 /**
- * lsh_ctrld - builtin to handle "^D" call
+ * hsh_ctrld - builtin to handle "^D" call
  * @args: List of args.  Not examined.
  * Return: Always returns 0, to terminate execution.
  */
-int lsh_ctrld(char **args)
+int hsh_ctrld(char **args)
 {
 	(void)args;
 	free(args);
@@ -91,7 +91,7 @@ int lsh_ctrld(char **args)
 }
 
 /**
- *_fork_fun - foo that create a fork.
+ *_fork_fun - function that create a fork.
  *@arg: Command and values path.
  *@av: Has the name of our program.
  *@env: Environment
@@ -104,19 +104,19 @@ int lsh_ctrld(char **args)
 int _fork_fun(char **arg, char **av, char **env, char *lineptr, int np, int c)
 {
 
-	pid_t child;
-	int status, i = 0;
+	pid_t child_code;
+	int count, d = 0;
 	char *format = "%s: %d: %s: not found\n";
 
 	if (arg[0] == NULL)
 		return (1);
-	for (i = 0; i < lsh_num_builtins(); i++)
+	for (d = 0; d < hsh_num(); d++)
 	{
-		if (_strcmp(arg[0], builtin_str[i]) == 0)
-			return (builtin_func[i](arg));
+		if (_strcmp(arg[0], builtin_str[d]) == 0)
+			return (builtin_func[d](arg));
 	}
-	child = fork();
-	if (child == 0)
+	child_code = fork();
+	if (child_code == 0)
 	{
 		if (execve(arg[0], arg, env) == -1)
 		{
@@ -130,8 +130,8 @@ int _fork_fun(char **arg, char **av, char **env, char *lineptr, int np, int c)
 	}
 	else
 	{
-		wait(&status);
-		return (status);
+		wait(&count);
+		return (count);
 	}
 	return (0);
 }

@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 	while (1)/* loop until exit */
 	{
 		errno = 0;
-		line = _getline_command();/** reads user input*/
+		line = _getline();/** reads user input*/
 		if (line == NULL && errno == 0)
 			return (0);
 		if (line)

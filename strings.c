@@ -13,18 +13,17 @@
 
 char *_strcat(char *dest, char *src)
 {
-	int i, j = 0;
+	int y, z = 0;
 
-	for (i = 0; dest[i] != '\0'; i++)
+	for (y = 0; dest[y] != '\0'; y++)
 	{
 	}
-	for (j = 0; src[j] != '\0'; j++)
+	for (z = 0; src[z] != '\0'; z++)
 	{
-		dest[i] = src[j];
-		i++;
-
+		dest[y] = src[z];
+		y++;
 	}
-	dest[i] = '\0';
+	dest[y] = '\0';
 return (dest);
 }
 
@@ -33,60 +32,60 @@ return (dest);
 /**
  * _strcmp - Compares two strings
  *
- * @s1: a string
- * @s2: Another string
+ * @str1: a string
+ * @str2: Another string
  *
  * Return: multiple returns
  *
  */
 
-int _strcmp(char *s1, char *s2)
+int _strcmp(char *str1, char *str2)
 {
-	int i = 0;
-	int val;
+	int p = 0;
+	int count;
 
-	while (s1[i] != 0 && s2[i] != 0 && s1[i] == s2[i])
-		i++;
-val = s1[i] - s2[i];
-return (val);
+	while (str1[p] != 0 && str2[p] != 0 && str1[p] == str2[p])
+		p++;
+count = str1[p] - str2[p];
+return (count);
 
 }
 
 /**
  * _strlen - gets the size of a string
- * @s: the string to measure
+ * @str: the string to measure
  * Return: the length of the string
  */
 
-int _strlen(char *s)
+int _strlen(char *str)
 {
-	int i;
+	int x;
 
-	for (i = 0; s[i] != 0; i++)
+	for (x = 0; str[x] != 0; x++)
 		;
 
-	return (i);
+	return (x);
 }
 
 /**
  *_strncmp -  function that compares two strings.
- *@s1: string one
- *@s2: string two
+ *@str1: string one
+ *@str2: string two
  *@n: number of characters
- * Return: diference
+ * Return: difference
  */
 
-size_t _strncmp(char *s1, char *s2, size_t n)
+size_t _strncmp(char *str1, char *str2, size_t n)
 {
-	size_t i, j;
+	size_t e, f;
 
-	for (j = 0; s1[j] != '\0' && j < n; j++)
+	for (f = 0; str1[f] != '\0' && f < n; f++)
 	{
-		i = s1[j] - s2[j];
+		e = str1[f] - str2[f];
 
-		if (i != 0)
+		if (e != 0)
 		{
-			return (i);
+			return (e);
 		}
 	}
 	return (0);
@@ -102,12 +101,12 @@ size_t _strncmp(char *s1, char *s2, size_t n)
 
 char *_strcpy(char *dest, char *src)
 {
-	int i = 0;
+	int v = 0;
 
-	for (i = 0; src[i] != '\0'; i++)
+	for (v = 0; src[v] != '\0'; v++)
 	{
-		dest[i] = src[i];
+		dest[v] = src[v];
 	}
-	dest[i + 1] = 0;
+	dest[v + 1] = 0;
 	return (dest);
 }

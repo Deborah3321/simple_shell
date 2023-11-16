@@ -1,22 +1,22 @@
 #include "shell.h"
 /**
- * _getline_command -  GEts inputs
+ * _getline -  Gets inputs
  * Return: The input.
  */
 
-char *_getline_command(void)
+char *_getline(void)
 {
-	char *lineptr = NULL;
-	size_t charter_user = 0;
+	char *print = NULL;
+	size_t count = 0;
 
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "$ ", 2);
 
-	if (getline(&lineptr, &charter_user, stdin) == -1)
+	if (getline(&print, &count, stdin) == -1)
 	{
-		free(lineptr);
+		free(print);
 		return (NULL);
 	}
 
-	return (lineptr);
+	return (print);
 }
