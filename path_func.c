@@ -8,7 +8,7 @@
 char *path_func(char **gmt, char *com)
 {
 	char *hierachy;
-       
+
 	hierachy = malloc(_strlen("/bin/") + _strlen(com) + 1);
 	if (!hierachy)
 	{
