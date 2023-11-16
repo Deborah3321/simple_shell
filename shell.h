@@ -16,21 +16,20 @@ typedef struct denum
 {
 	int cnt;
 } denum;
-void prompt(char **arv, char **envp, bool flg);
-int _strcmp(char *s1, char *s2);
+void prompt(char **arg, char **envp, bool flg);
+int _strcmp(char *str1, char *str2);
 char *_strcat(char *dest, char *src);
-char *handle_path(char **rgv, char *cmd);
+char *path_func(char **gmt, char *com);
 char *_strcpy(char *dest, char *src);
-int _strlen(char *s);
-void handle_exit(char *cmd);
-void runcmd(char **rgv, char **arv, char **envp);
-char *trim(char *cmd);
+int _strlen(char *str);
+void shell_exit(char *cmd);
+void deb_pid(char **arg, char **men, char **unt);
+char *deb_rm(char *com);
 char *_strncpy(char *dest, char *src, int n);
 char *get_path(char *cmd);
 char *_getenv(char *name);
 char **tokenize_env(char *path);
 extern char **environ;
-/*void geterror(int cnt, char **arv, char *cmd);*/
-void geterror(denum *n, char **arv, char *cmd);
-/*void search_path(char **rgv, char *cmd, char **envp);*/
+void err_type(denum *n, char **arv, char *cmd);
+
 #endif

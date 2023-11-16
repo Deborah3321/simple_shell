@@ -10,12 +10,12 @@
  */
 char *_strncat(char *dest, const char *src, size_t n)
 {
-	size_t dest_len = _strlen(dest);
-	size_t i;
+	size_t dest_count = _strlen(dest);
+	size_t q;
 
-	for (i = 0; i < n && src[i] != '\0'; i++)
-		dest[dest_len + i] = src[i];
-	dest[dest_len + i] = '\0';
+	for (q = 0; q < n && src[q] != '\0'; q++)
+		dest[dest_count + q] = src[q];
+	dest[dest_count + q] = '\0';
 
 	return (dest);
 }
