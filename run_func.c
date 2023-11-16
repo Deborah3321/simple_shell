@@ -9,7 +9,7 @@ void deb_pid(char **arg, char **men, char **unt)
 {
 	pid_t child_prog;
 	int prob;
-	
+
 	child_prog = fork();
 
 	if (child_prog == -1)
